@@ -43,7 +43,7 @@
 ## マイクロサービスの分割について
 イベントサイトは、以下のような画面フローをとります。
 
-![イベントサイト 画面フロー](EventSiteFlow.png)
+![イベントサイト 画面フロー](img/EventSiteFlow.png)
 
 
 上記を実現するアーキテクチャは、モノリシック、マイクロサービスそれぞれで異なります。
@@ -51,7 +51,7 @@
 
 <b>モノリシックアーキテクチャ</b>
 
-![イベントサイト 画面フロー](monolithicOne.png)
+![イベントサイト 画面フロー](img/monolithicOne.png)
 
 
 <br>
@@ -66,7 +66,7 @@
 <br>
 イベントサイトでの分割例
 
-![イベントサイト 画面フロー](MicroserviceArchitecture.PNG)
+![イベントサイト 画面フロー](img/MicroserviceArchitecture.png)
 
 図内各マイクロサービスのコードは下記にあります。 (<-- ドキュメント末尾にリファレンスとして掲載?>)
 
@@ -142,7 +142,7 @@ https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-speaker
 ### SSO
 「Google ID を使った SSO ログインコンポーネント」を、部品として他のWebアプリでご利用頂く手順を説明します。
 
-![SSO](SSO.PNG)
+![SSO](img/SSO.png)
 
 #### 事前準備
     以下リンクを参照の上 Google Client ID を取得しておいてください。
@@ -202,17 +202,17 @@ EPOCH カートリッジでは Jaeger を使って実現しています。
 EPOCH カートリッジでは Prometheus を使ってインフラ側 metrics を取得しています。  
 
 これら 1. ～ 3 を各ツールで取得し Grafana によって統合的に可視化します。  
-![Blue/Green デプロイメント](Grafana.PNG)   
+![Blue/Green デプロイメント](img/Grafana.png)   
 
 これらの部品について次章以降で説明致します。  
 #### log 監視
 Loki を使って 各種ログの取得/可視化を実現しています。
 
 Loki によって取得したログを可視化したもの  
-![Blue/Green デプロイメント](Grafana-loki5.PNG)  
+![Blue/Green デプロイメント](img/Grafana-Loki5.png)  
 
 ##### Loki 構成図    
-![](Loki1.PNG)    
+![](img/Loki1.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td>
@@ -263,7 +263,7 @@ Grafana 連携時に必要となる loki の service 名を取得します。
 
 2) 一覧のうち loki-stack-xxxx というサービス名をひかえておきます。
 (次章で使用します。)  
-![](Loki2.PNG)    
+![](img/Loki2.png)    
 
 ここまでで Loki の設定がおわりました。  
 次章では Loki によって取得したログを可視化するために必要な統合可視化ツール Grafana について説明を致します。  
@@ -306,7 +306,7 @@ kubectl apply -f https://raw.githubusercontent.com/exastro-suite/SettingSamples-
 http://Grafana を導入したホスト名:30400  
 Username: admin  
 Password: admin  
-![Grafanaログイン画面](GrafanaLogin.PNG)
+![Grafanaログイン画面](img/GrafanaLogin.png)
 
 #### 3) Grafana と Loki の連携   
 あらためて Grafana UI にアクセスします。  
@@ -316,23 +316,23 @@ Password: admin
 
 Grafana にログイン後  
 Configuration (歯車アイコン) > Datasource  
-![Grafana 設定](Grafana-Jaeger1.png)
+![Grafana 設定](img/Grafana-Jaeger1.png)
 
 Add data source を押下します。  
-![Grafana 設定](Grafana-addDataSource.png)
+![Grafana 設定](img/Grafana-addDataSource.png)
 
 一覧から Loki の "Select" を押下します。  
-![Grafana 設定](Loki3.png)
+![Grafana 設定](img/Loki3.png)
 
 URL 入力欄に以下を入力します。  
 <b>http://loki-stack-xxxx:3100</b>    
-![Grafana 設定](Grafana-Loki-URL.PNG)
+![Grafana 設定](img/Grafana-Loki-URL.png)
 
 画面最下部にある "Save & Test" を押下します。  
-![Grafana 設定](Grafana-Loki-savetest.png)
+![Grafana 設定](img/Grafana-Loki-savetest.png)
 
 "Data source connected and service found" と出れば Loki との連携完了です。  
-![Grafana 設定](Grafana-Loki-savetest-ok.png)
+![Grafana 設定](img/Grafana-Loki-savetest-ok.png)
 
 <br>
 
@@ -341,13 +341,13 @@ Grafana から Loki で取得したログをみてみましょう。
 ※あらかじめ対象アプリにリクエストを発生させておきます。  
 
 画面左から Explore を押下します。  
-![Grafana 設定](Grafana-Jaeger8.png)
+![Grafana 設定](img/Grafana-Jaeger8.png)
 
 <br>
 
 
 "Explore " の右側にあるプルダウンから Loki を選択します。  
-![Grafana 設定](Grafana-loki1.png)
+![Grafana 設定](img/Grafana-Loki1.png)
 
 <br>
 
@@ -355,18 +355,18 @@ Grafana から Loki で取得したログをみてみましょう。
 "Log Browser" をクリックすると、取得可能なログのカテゴリが出ます。    
 ここでは name を選択します。  
 
-![Grafana 設定](Grafana-loki2.png)
+![Grafana 設定](img/Grafana-Loki2.png)
 
 <br>
 name 配下の front-user を押下後 "Show logs" を押下します。  
 
  (マイクロサービス "front-user" コンポーネントのが出力するログを選択)  
 
-![Grafana 設定](Grafana-loki3.png)
+![Grafana 設定](img/Grafana-Loki3.png)
 
 
 ログが画面下半分に表示されます。  
-![Grafana 設定](Grafana-loki4.png)
+![Grafana 設定](img/Grafana-Loki4.png)
 
 同様な流れで Jaeger、Prometheus から取得したデータも Grafana で可視化できます。  
 <br>
@@ -376,15 +376,15 @@ name 配下の front-user を押下後 "Show logs" を押下します。
 Spring boot ベースのアプリケーションを対象として Jaeger を使った分散トレースを実現しています。  
 
 分散トレースのイメージ  
-![Blue/Green デプロイメント](Jaeger2.PNG)  
+![Blue/Green デプロイメント](img/Jaeger2.png)  
 
 Jaeger でイベントサイトの分散トレースを実施した結果      
-![Grafana 設定](Grafana-Jaeger12.png)  
+![Grafana 設定](img/Grafana-Jaeger12.png)  
     
 <br>
 
 ##### Jaeger構成図    
-![Blue/Green デプロイメント](Jaeger-component.PNG)    
+![Blue/Green デプロイメント](img/Jaeger-component.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td><td>実現方法</td>
@@ -416,7 +416,7 @@ Jaeger でイベントサイトの分散トレースを実施した結果
 ##### 1) Jaeger-client の設定
 Jaeger-client を、分散トレーシングの対象としたいコンポーネントに設定します。   
 以下の例では、２つのコンポーネントが可視化されます。  
-![Blue/Green デプロイメント](Jaeger6.PNG)   
+![Blue/Green デプロイメント](img/Jaeger6.png)   
 
 Jaeger-client の設定方法  
 分散トレーシング対象とするコンポーネント内 pom.xml の \<dependencies> に下記を追加します。  
@@ -494,7 +494,7 @@ spec:
 
 spec.selector.app に設定した文字列が、各分散トレースのラベルとなります。  
 以下は spec.template.meetadata.labels.app に "event-user" と設定した時の Jaeger の画面です。  
-![Blue/Green デプロイメント](Jaeger4.PNG)  
+![Blue/Green デプロイメント](img/Jaeger4.png)  
 
 対象コンポーネントの Deployment manifest 書換後、apply します。  
     kubectl apply -f 対象コンポーネントの manifest  -n 対象ネームスペース
@@ -505,50 +505,50 @@ Jaeger で収集したトレースを Grafana UI でみてみましょう。
 
 Grafana にログイン後  
 Configuration (歯車アイコン) > Datasource  
-![Grafana 設定](Grafana-Jaeger1.png)
+![Grafana 設定](img/Grafana-Jaeger1.png)
 
 Add data source を押下します。　　  
-![Grafana 設定](Grafana-addDataSource.png)  
+![Grafana 設定](img/Grafana-addDataSource.png)  
 
 一覧から Jaeger の "Select" を押下します。
-![Grafana 設定](Grafana-Jaeger3.png)
+![Grafana 設定](img/Grafana-Jaeger3.png)
 
 URL 入力欄に以下を入力します。  
 <b>http://jaeger-all-in-one-inmemory-query:16686</b>    
-![Grafana 設定](Grafana-Jaeger-URL.png)
+![Grafana 設定](img/Grafana-Jaeger-URL.png)
 
 画面最下部にある "Save & Test" を押下します。  
-![Grafana 設定](Grafana-Jaeger-savetest.PNG)
+![Grafana 設定](img/Grafana-Jaeger-savetest.png)
 
 "Data source connected and service found" と出れば Jaeger との連携完了です。  
-![Grafana 設定](Grafana-Jaeger-connect.PNG)
+![Grafana 設定](img/Grafana-Jaeger-connect.png)
 
 <br>
 
 Grafana から Jaeger で取得した分散トレーシングをみてみましょう。  
 画面左から Explore を押下します。  
-![Grafana 設定](Grafana-Jaeger8.png)
+![Grafana 設定](img/Grafana-Jaeger8.png)
 
 
 Search を押下します。  
-![Grafana 設定](Grafana-Jaeger9.png)
+![Grafana 設定](img/Grafana-Jaeger9.png)
 
 Service 欄にトレース一覧がでてくるので１つを選択します。  
-![Grafana 設定](Grafana-Jaeger10.png)
+![Grafana 設定](img/Grafana-Jaeger10.png)
 
 <br>
 
 画面右上の Run Query を押下します。  
-![Grafana 設定](Grafana-Jaeger11.png)
+![Grafana 設定](img/Grafana-Jaeger11.png)
 
 画面下半分に出るトレース一覧のうち１つを押下すると、右側に分散トレーシングが可視化されます。  
-![Grafana 設定](Grafana-Jaeger12.png)
+![Grafana 設定](img/Grafana-Jaeger12.png)
 
 #### metrics 取得    
 metrics 取得ツール Prometheus の導入方法を説明します。  
 
 ##### Prometheus 構成図    
-![](Prometheus2.PNG)    
+![](img/Prometheus2.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td><td>実現方法</td>
@@ -622,64 +622,62 @@ kubectl apply -f ./prometheus -n 対象ネームスペース
 http://"Grafana を導入したホスト名":30400  
 Username: admin  
 Password: admin  
-![Grafanaログイン画面](GrafanaLogin.PNG)
+![Grafanaログイン画面](img/GrafanaLogin.png)
 
 Grafana にログイン後  
 Configuration (歯車アイコン) > Datasource  
-![Grafana 設定](Grafana-Jaeger1.png)
+![Grafana 設定](img/Grafana-Jaeger1.png)
 
 Add data source を押下します。  
-![Grafana 設定](Grafana-addDataSource.png)  
+![Grafana 設定](img/Grafana-addDataSource.png)  
 
 一覧から Prometheus の "Select" を押下します。  
-![Grafana 設定](Grafana-Prometheus1.png)
+![Grafana 設定](img/Grafana-Prometheus1.png)
 
 URL 入力欄に以下を入力します。  
 http://prometheus:9090    
-![Grafana 設定](Grafana-Prometheus-URL.png)
+![Grafana 設定](img/Grafana-Prometheus-URL.png)
 
 画面最下部にある "Save & Test" を押下します。  
-![Grafana 設定](Grafana-Prometheus-savetest.png)
+![Grafana 設定](img/Grafana-Prometheus-savetest.png)
 <br>
 
 "Data source connected and service found" と出れば Prometheus との連携完了です。  
-![Grafana 設定](Grafana-Prometheus-savetest-ok.png)
+![Grafana 設定](img/Grafana-Prometheus-savetest-ok.png)
 <br>
 
 #### 5) UI 確認  
 Grafana から Prometheus で取得した metrics をみてみましょう。  
 画面左から Explore を押下します。  
-![Grafana 設定](Grafana-Jaeger8.png)
+![Grafana 設定](img/Grafana-Jaeger8.png)
 
 <br>
 
 
 "Explore " の右側にあるプルダウンから Prometheus を選択します。  
-![Grafana 設定](Grafana-Prometheus2.png)
+![Grafana 設定](img/Grafana-Prometheus2.png)
 
 <br>
 
 
 "Metric Browser" 欄に、取得したい metrics 名 (の一部) を入力します。  
 cpu を入力すると、cpu 関連の metrics 候補が出てくるので node_cpu_seconds_total を選択します。  
-![Grafana 設定](Grafana-Prometheus3.png)
+![Grafana 設定](img/Grafana-Prometheus3.png)
 
 <br>
 
 画面右上の Run Query を押下します。  
-![Grafana 設定](Grafana-Jaeger11.png)
+![Grafana 設定](img/Grafana-Jaeger11.png)
 
 該当する metrics が画面下半分に表示されます。  
-![Grafana 設定](Grafana-Prometheus4.png)
+![Grafana 設定](img/Grafana-Prometheus4.png)
 
 
 
 ## 高度なデプロイ
 ### Blue/Green デプロイとは
 現状の本番環境（ブルー）とは別の、新しい本番環境（グリーン）を用意しロードバランサーの接続先を切り替えるなどして新しい本番環境をリリースすることです。
-![Blue/Green デプロイメント](BlueGreen.PNG)
-
-![Blue/Green デプロイメント](http://localhost/BlueGreen.PNG)
+![Blue/Green デプロイメント](img/BlueGreen.png)
 
 EPOCH カートリッジでは Istio を用いて Blue/Green デプロイメントを実現しています。  
 EPOCH カートリッジ内 Blue/Green 用 manifest (for Istio) を一部書き換えることで他のアプリに対して Blue/Green デプロイメントを実施することができます。
@@ -790,7 +788,7 @@ Blue/Green デプロイメントに必要な manifest は以下の３つです�
 VirtualService … v1, v2 の Pod の振り分け比率を定義  
 DestinationRule  … VirtualService と Pod を紐づけ  
 
-![Blue/Green デプロイメント](BlueGreen2.PNG)  
+![Blue/Green デプロイメント](img/BlueGreen2.png)  
 
 これらのファイルを入手するために以下を git clone します。  
 https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-iac.git
@@ -859,7 +857,7 @@ kubectl apply -f ./bluegreen-deployment.yaml   -n <i>対象ネームスペース
 Webアプリで使用しているポート番号に紐づくポート番号を使用して URL アクセスします。  
 EPOCH カートリッジの Webアプリ「イベントサイト」の場合、ポート番号は 80 なので 32439 を使ってアクセスします。
 
-![EPOCHカートリッジ](Gateway1.png)
+![EPOCHカートリッジ](img/Gateway1.png)
 
 http://デプロイ先のIPアドレス等:32439
 
@@ -886,5 +884,3 @@ kubectl apply -f ./bluegreen-deployment.yaml   -n <i>対象ネームスペース
 
 ### <b>URL アクセス (Blue/Green デプロイメント後)</b>  
 http://デプロイ先のIPアドレス等:32439
-
-
