@@ -139,12 +139,12 @@ https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-speaker
 <br><br>
 
 ## 部品として利用していただけるコンポーネント
-### ・[SSO](#SSO)
-### ・[監視ツール](#Monitor)
-### &nbsp;&nbsp;&nbsp;&nbsp;・[ログ](#log)
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＃[統合可視化ツール](#Visualization)
-### &nbsp;&nbsp;&nbsp;&nbsp;・[分散トレーシング](#Tracing)
-### &nbsp;&nbsp;&nbsp;&nbsp;・[メトリクス](#Metrics)
+&nbsp;&nbsp;・[SSO](#SSO)  
+&nbsp;&nbsp;・[監視ツール](#Monitor)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;・[ログ](#log)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（[＋統合可視化ツール](#Visualization)）  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;・[分散トレーシング](#Tracing)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;・[メトリクス](#Metrics)  
 
 ### <a id="SSO" />SSO
 「Google ID を使った SSO ログインコンポーネント」を、部品として他のWebアプリでご利用頂く手順を説明します。
