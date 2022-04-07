@@ -1,9 +1,10 @@
 ## 目次
-### ・ガイドライン概要
-### ・EPOCH カートリッジとは
-### ・マイクロサービスの分割について
-### ・部品として利用していただけるコンポーネント
-### ・Exastro EPOCH による CI/CD
+&nbsp;&nbsp;・[ガイドライン概要](#ガイドライン概要)  
+&nbsp;&nbsp;・[EPOCH カートリッジとは](#EPOCH&nbsp;カートリッジとは)  
+&nbsp;&nbsp;・[マイクロサービスの分割について](#マイクロサービスの分割について)  
+&nbsp;&nbsp;・[部品として利用していただけるコンポーネント](#部品として利用していただけるコンポーネント)  
+&nbsp;&nbsp;・Exastro EPOCH による CI/CD  
+&nbsp;&nbsp;・[高度なデプロイ](#高度なデプロイ)  
 <br>
 
 ## ガイドライン概要
@@ -21,7 +22,7 @@
 クラウドネイティブアプリ開発にあたり、どのように EPOCH カートリッジを利用して頂けるかを理解して頂くことです。
 <br><br>
 
-## EPOCH カートリッジとは
+## EPOCH&nbsp;カートリッジとは
 「イベントサイト」をテーマとしたクラウドネイティブアプリで、以下を実装したものです。
 1. クラウドネイティブ実現に必須のマイクロサービスアーキテクチャ
 2. Google 認証を利用した SSO ログイン
@@ -30,7 +31,7 @@
 5. セッション管理
 <br>
 
-![EPOCHカートリッジ](EPOCHカートリッジ全体.png)
+![EPOCHカートリッジ](img/EPOCHカートリッジ全体.png)
 <br>
 
 本ドキュメントでは以下について解説致します。
@@ -71,7 +72,7 @@
 図内各マイクロサービスのコードは下記にあります。 (<-- ドキュメント末尾にリファレンスとして掲載?>)
 
 <b>User</b>
-<br>
+
 User フロント<br>
 https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-front_user
 
@@ -137,9 +138,15 @@ https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-partici
 https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-speaker-db
 <br><br>
 
-## 部品として利用
+## 部品として利用していただけるコンポーネント
+### ・[SSO](#SSO)
+### ・[監視ツール](#Monitor)
+### &nbsp;&nbsp;&nbsp;&nbsp;・[ログ](#log)
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＃[統合可視化ツール](#Visualization)
+### &nbsp;&nbsp;&nbsp;&nbsp;・[分散トレーシング](#Tracing)
+### &nbsp;&nbsp;&nbsp;&nbsp;・[メトリクス](#Metrics)
 
-### SSO
+### <a id="SSO" />SSO
 「Google ID を使った SSO ログインコンポーネント」を、部品として他のWebアプリでご利用頂く手順を説明します。
 
 ![SSO](img/SSO.png)
@@ -181,7 +188,7 @@ https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-speaker
     https://github.com/exastro-suite/SettingSamples-epoch-Exastro_Days_Tokyo-iac/blob/main/front-user.yaml
 <br>
 
-### 監視ツール
+### <a id="Monitor" />監視ツール
 
 #### 監視ツールについて
 EPOCH カートリッジでは監視対象から下記 1～ 3 のデータを取得するためのツールに加え、これらを統合的に可視化するツールを部品として提供しています。  
@@ -202,17 +209,18 @@ EPOCH カートリッジでは Jaeger を使って実現しています。
 EPOCH カートリッジでは Prometheus を使ってインフラ側 metrics を取得しています。  
 
 これら 1. ～ 3 を各ツールで取得し Grafana によって統合的に可視化します。  
-![Blue/Green デプロイメント](img/Grafana.png)   
+![Grafana統合監視](img/Grafana.png)   
 
 これらの部品について次章以降で説明致します。  
-#### log 監視
+
+#### <a id="log">ログ 監視
 Loki を使って 各種ログの取得/可視化を実現しています。
 
 Loki によって取得したログを可視化したもの  
-![Blue/Green デプロイメント](img/Grafana-Loki5.png)  
+![Grafana-Loki](img/Grafana-Loki5.png)  
 
 ##### Loki 構成図    
-![](img/Loki1.png)    
+![Loki構成図](img/Loki1.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td>
@@ -263,7 +271,7 @@ Grafana 連携時に必要となる loki の service 名を取得します。
 
 2) 一覧のうち loki-stack-xxxx というサービス名をひかえておきます。
 (次章で使用します。)  
-![](img/Loki2.png)    
+![loki-service名](img/Loki2.png)    
 
 ここまでで Loki の設定がおわりました。  
 次章では Loki によって取得したログを可視化するために必要な統合可視化ツール Grafana について説明を致します。  
@@ -271,7 +279,7 @@ Grafana の章で Loki と Grafana の連携し、取得したログを可視化
 
 <br>
 
-#### 統合可視化ツール
+#### <a id="Visualization">統合可視化ツール
 統合可視化ツール Grafana の導入によって Loki で取得したログや、Jaeger、Prometheus (次章以降で説明) で取得した分散トレーシング、metrics を可視化することができます。  
 
 導入の流れ  
@@ -346,13 +354,13 @@ Grafana から Loki で取得したログをみてみましょう。
 <br>
 
 
-"Explore " の右側にあるプルダウンから Loki を選択します。  
+"Explore" の右側にあるプルダウンから Loki を選択します。  
 ![Grafana 設定](img/Grafana-Loki1.png)
 
 <br>
 
 
-"Log Browser" をクリックすると、取得可能なログのカテゴリが出ます。    
+"Log Browser" をクリックすると、取得可能なログのカテゴリが出ます。  
 ここでは name を選択します。  
 
 ![Grafana 設定](img/Grafana-Loki2.png)
@@ -372,19 +380,19 @@ name 配下の front-user を押下後 "Show logs" を押下します。
 <br>
 
 
-#### 分散トレーシング  
+#### <a id="Tracing" />分散トレーシング  
 Spring boot ベースのアプリケーションを対象として Jaeger を使った分散トレースを実現しています。  
 
 分散トレースのイメージ  
-![Blue/Green デプロイメント](img/Jaeger2.png)  
+![分散トレースのイメージ](img/Jaeger2.png)  
 
 Jaeger でイベントサイトの分散トレースを実施した結果      
-![Grafana 設定](img/Grafana-Jaeger12.png)  
+![Jaeger分散トレース結果](img/Grafana-Jaeger12.png)  
     
 <br>
 
 ##### Jaeger構成図    
-![Blue/Green デプロイメント](img/Jaeger-component.png)    
+![Jaeger構成図](img/Jaeger-component.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td><td>実現方法</td>
@@ -416,7 +424,7 @@ Jaeger でイベントサイトの分散トレースを実施した結果
 ##### 1) Jaeger-client の設定
 Jaeger-client を、分散トレーシングの対象としたいコンポーネントに設定します。   
 以下の例では、２つのコンポーネントが可視化されます。  
-![Blue/Green デプロイメント](img/Jaeger6.png)   
+![Jaeger-clientの設定](img/Jaeger6.png)   
 
 Jaeger-client の設定方法  
 分散トレーシング対象とするコンポーネント内 pom.xml の \<dependencies> に下記を追加します。  
@@ -494,7 +502,7 @@ spec:
 
 spec.selector.app に設定した文字列が、各分散トレースのラベルとなります。  
 以下は spec.template.meetadata.labels.app に "event-user" と設定した時の Jaeger の画面です。  
-![Blue/Green デプロイメント](img/Jaeger4.png)  
+![Jaeger画面](img/Jaeger4.png)  
 
 対象コンポーネントの Deployment manifest 書換後、apply します。  
     kubectl apply -f 対象コンポーネントの manifest  -n 対象ネームスペース
@@ -544,11 +552,11 @@ Service 欄にトレース一覧がでてくるので１つを選択します。
 画面下半分に出るトレース一覧のうち１つを押下すると、右側に分散トレーシングが可視化されます。  
 ![Grafana 設定](img/Grafana-Jaeger12.png)
 
-#### metrics 取得    
-metrics 取得ツール Prometheus の導入方法を説明します。  
+#### <a id="Metrics" />Metrics 取得    
+Metrics 取得ツール Prometheus の導入方法を説明します。  
 
 ##### Prometheus 構成図    
-![](img/Prometheus2.png)    
+![Prometheus構成図](img/Prometheus2.png)    
 <table>
 <tr>
 <td>モジュール名</td><td>役割</td><td>実現方法</td>
@@ -884,3 +892,5 @@ kubectl apply -f ./bluegreen-deployment.yaml   -n <i>対象ネームスペース
 
 ### <b>URL アクセス (Blue/Green デプロイメント後)</b>  
 http://デプロイ先のIPアドレス等:32439
+
+
